@@ -5,7 +5,6 @@ window.onload = function()
     var x, y;
     var temp;
     var twoCases = ["X", "O"];
-    var finished = false; //flag
     var board = document.querySelector("#board");
     var squares = board.children;
 
@@ -34,6 +33,9 @@ window.onload = function()
             this.classList.add(twoCases[0]);
             this.textContent = twoCases[0];
 
+            //No cheating
+            this.removeEventListener("click",arguments.callee);
+
             //Swap cases for the next click
             temp = twoCases[0];
             twoCases[0] = twoCases[1];
@@ -59,10 +61,14 @@ window.onload = function()
                     winstatus = document.getElementById("status");
                     winstatus.classList.add("you-won");
                     winstatus.textContent = "Great job player " + twoCases[1] + "! You won!"; //send congratulatory message
-                    finished = true; //flag gets changed for finishing the game
+
+                    //Supposed to stop all buttons from being clicked once the game is done. Couldn't get this to work.
+                    for (x=0; x<squares.length; x++)
+                    {
+                        this.setAttribute("onclick", null);
+                    }
                 }
             }
-
         });
 
         //Resetting the game
