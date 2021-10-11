@@ -1,18 +1,18 @@
 window.onload = function() 
 {
     
-    //LOADING PAGE AND STYLING BOARD
+    //Variables
     var x, y;
     var temp;
     var twoCases = ["X", "O"];
     var finished = false; //flag
-
     var board = document.querySelector("#board");
     var squares = board.children;
 
+    //Loading page and styling board
     for (x=0; x<squares.length; x++) 
     {
-         //adding each square
+        //Adding each square
         squares[x].classList.add("square");
 
         //What happens when you hover over
@@ -63,6 +63,13 @@ window.onload = function()
                 }
             }
 
+        });
+
+        //Resetting the game
+        document.querySelector("button").addEventListener("click", function()
+        {
+            //Reloading the entire page
+            window.location.reload();
         });
     }
 }
